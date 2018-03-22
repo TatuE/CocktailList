@@ -1,10 +1,14 @@
 package fi.hh.swd4tn020.CocktailList.domain;
 
+
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cocktail {
@@ -15,12 +19,16 @@ public class Cocktail {
 	private String nimi;
 	private double hinta;
 	private int kaytossa;
+
 	
 	@ManyToOne
 	private Jaa jaa;
 	
 	@ManyToOne
 	private Lasi lasi;
+	
+	@OneToMany
+	private List<Aines> ainekset;
 
 	public Cocktail() {
 		super();
@@ -40,7 +48,7 @@ public class Cocktail {
 		this.hinta = hinta;
 		this.kaytossa = kaytossa;
 		this.jaa = jaa;
-		this.lasi = lasi;
+		this.lasi = lasi;	
 	}
 
 	public long getCocktailId() {
@@ -70,6 +78,8 @@ public class Cocktail {
 	public int isKaytossa() {
 		return kaytossa;
 	}
+	
+	
 
 	public void setKaytossa(int kaytossa) {
 		this.kaytossa = kaytossa;
@@ -89,6 +99,22 @@ public class Cocktail {
 
 	public void setLasi(Lasi lasi) {
 		this.lasi = lasi;
+	}
+	
+	public int getKaytossa() {
+		return kaytossa;
+	}
+
+	public List<Aines> getAinekset() {
+		return ainekset;
+	}
+
+	public void setAinekset(List<Aines> ainekset) {
+		this.ainekset = ainekset;
+	}
+	
+	public void lisaaAines(Aines aines) {
+		this.ainekset.add(aines);
 	}
 
 	@Override

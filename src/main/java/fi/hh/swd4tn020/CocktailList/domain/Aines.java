@@ -21,16 +21,27 @@ public class Aines {
 	
 	@ManyToOne
 	private Ainesosa ainesosa;
+	
+	@ManyToOne
+	private Cocktail cocktail;
 
 	public Aines() {
 		super();		
 	}
-
+	
 	public Aines(double maara, Tyyppi tyyppi, Ainesosa ainesosa) {
+		super();		
+		this.maara = maara;
+		this.tyyppi = tyyppi;
+		this.ainesosa = ainesosa;
+	}
+	
+	public Aines(double maara, Tyyppi tyyppi, Ainesosa ainesosa, Cocktail cocktail) {
 		super();
 		this.maara = maara;
 		this.tyyppi = tyyppi;
 		this.ainesosa = ainesosa;
+		this.cocktail = cocktail; 
 	}
 
 	public long getAinesId() {
@@ -63,11 +74,19 @@ public class Aines {
 
 	public void setAinesosa(Ainesosa ainesosa) {
 		this.ainesosa = ainesosa;
+	}	
+
+	public Cocktail getCocktail() {
+		return cocktail;
+	}
+
+	public void setCocktail(Cocktail cocktail) {
+		this.cocktail = cocktail;
 	}
 
 	@Override
 	public String toString() {
-		return "Aines [ainesId=" + ainesId + ", maara=" + maara + ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() + "]";
+		return "Aines [ainesId=" + ainesId + ", maara=" + maara + ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() +", cocktail="+this.getCocktail()+"]";
 	}
 	
 	
