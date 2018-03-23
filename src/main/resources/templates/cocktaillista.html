@@ -10,15 +10,18 @@
 	<table class="table table-striped">
 		<tr>
 		    <th>Cocktailit</th>
+		    <th></th>
 		    <th></th>		    		    
 		</tr>  
     	<tr th:each = "cocktail : ${cocktailit}">
     		<td th:text="${cocktail.nimi}"></td>
     		    
-    		<td><a th:href="@{/cocktailit/{id}(id=${cocktail.cocktailId})}" class="btn btn-info">Show</a></td>  					   		
+    		<td><a th:href="@{/cocktailit/{id}(id=${cocktail.cocktailId})}" class="btn btn-info">Näytä</a></td>
+    		<td><a th:href="@{/poistacocktail/{id}(id=${cocktail.cocktailId})}" class="btn btn-danger">Poista</a></td>   					   		
     	</tr>
      </table>
      <a href="/lisaacocktail" class="btn btn-success">Lisää uusi cocktail</a>
-     <a href="/lisaaraakaaine" class="btn btn-success">Lisää uusi Raaka-aine</a>        
+     <a href="/lisaaraakaaine" class="btn btn-success">Lisää uusi raaka-aine</a>
+     <a href="/lisaa-ainesosa" class="btn btn-success">Lisää uusi ainesosa </a>           
 </body>
 </html>

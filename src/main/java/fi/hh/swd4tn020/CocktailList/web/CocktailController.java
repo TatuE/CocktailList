@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fi.hh.swd4tn020.CocktailList.domain.Aines;
 import fi.hh.swd4tn020.CocktailList.domain.AinesRepository;
+import fi.hh.swd4tn020.CocktailList.domain.Ainesosa;
 import fi.hh.swd4tn020.CocktailList.domain.AinesosaRepository;
 import fi.hh.swd4tn020.CocktailList.domain.Cocktail;
 import fi.hh.swd4tn020.CocktailList.domain.CocktailRepository;
@@ -39,15 +40,14 @@ public class CocktailController {
 	
 	@RequestMapping(value="/cocktaillista", method=RequestMethod.GET)
 	public String cocktaillista(Model model) {
-		model.addAttribute("cocktailit", cocktailRepository.findAll());
+		model.addAttribute("cocktailit", cocktailRepository.findByKaytossa(1));
 		return "cocktaillista";
 	}
 	
 	@RequestMapping(value="/cocktailit/{id}", method=RequestMethod.GET)
 	public String cocktailit(@PathVariable("id") Long cocktailId ,Model model) {
-		model.addAttribute("cocktaili", cocktailRepository.findOne(cocktailId));
-		model.addAttribute("aines", ainesRepository.findByCocktail(cocktailRepository.findOne(cocktailId)));
-		model.addAttribute("aines1", ainesRepository.findAll());
+		model.addAttribute("cocktaili", cocktailRepository.findByCocktailId(cocktailId).get(0));
+		model.addAttribute("aines", ainesRepository.findByCocktail(cocktailRepository.findByCocktailId(cocktailId).get(0)));		
 		return "cocktailit";
 	}
 	
@@ -61,26 +61,53 @@ public class CocktailController {
 	
 	@RequestMapping(value="/lisaacocktail", method=RequestMethod.POST)
 	public String lisaacocktail(Cocktail cocktail, Model model) {
-				
-			cocktailRepository.save(cocktail);			
-			return "redirect:/cocktaillista";		
+			cocktail.setKaytossa(1);
+			cocktailRepository.save(cocktail);
+			Cocktail haku = cocktailRepository.findByNimi(cocktail.getNimi()).get(0);
+			long id = haku.getCocktailId();
+			return "redirect:/cocktailit/"+id+"";		
 	}
 	
 	@RequestMapping(value="/lisaaraakaaine")
 	public String lisaaRaakaaine(Model model) {					
-			model.addAttribute("cocktail",cocktailRepository.findAll());
+			model.addAttribute("cocktail",cocktailRepository.findByKaytossa(1));
 			model.addAttribute("aines", new Aines());
-			model.addAttribute("tyyppi", tyyppiRepository.findAll());
+			model.addAttribute("tyyppi", tyyppiRepository.findByYksikkoLuokka("mittayksikko"));			
 			model.addAttribute("ainesosa", ainesosaRepository.findAll());			
-			return "lisaaraakaaine";	
-				
+			return "lisaaraakaaine";				
 	}
 	
 	@RequestMapping(value="/lisaaraakaaine", method=RequestMethod.POST)
 	public String tallennaRaakaaine(Aines aines) {
+		aines.setKaytossa(1);
 		long id = aines.getCocktail().getCocktailId();
 		ainesRepository.save(aines);		
 		return "redirect:/cocktailit/"+id+"";
+	}
+	
+	@RequestMapping(value="/lisaa-ainesosa")
+	public String lisaaAinesosa(Model model) {
+		model.addAttribute("ainesosa", new Ainesosa());
+		model.addAttribute("tyyppi", tyyppiRepository.findByYksikkoLuokka("ainesosa"));			
+		return "lisaa-ainesosa";
+	}
+	
+	@RequestMapping(value="/lisaa-ainesosa", method=RequestMethod.POST)
+	public String tallennaAinesosa(Ainesosa ainesosa) {
+		ainesosaRepository.save(ainesosa);	
+		return "redirect:/cocktaillista";
+	}
+	
+	@RequestMapping(value="/poistacocktail/{id}", method=RequestMethod.GET)
+	public String poistacocktail(@PathVariable("id") Long cocktailId) {
+		Cocktail cocktail = cocktailRepository.findOne(cocktailId);
+		cocktail.setKaytossa(0);
+		for(Aines aines: ainesRepository.findByKaytossa(cocktail, 1)) {
+			aines.setKaytossa(0);
+			ainesRepository.save(aines);
+		}
+		cocktailRepository.save(cocktail);		
+		return "redirect:/cocktaillista";
 	}
 
 }

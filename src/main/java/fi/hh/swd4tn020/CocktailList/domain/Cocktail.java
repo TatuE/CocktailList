@@ -32,6 +32,7 @@ public class Cocktail {
 
 	public Cocktail() {
 		super();
+		this.kaytossa=0;
 	
 	}
 

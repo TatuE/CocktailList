@@ -15,6 +15,7 @@ public class Aines {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long ainesId;
 	private double maara;
+	private int kaytossa;
 	
 	
 	@ManyToOne
@@ -28,20 +29,16 @@ public class Aines {
 
 	public Aines(){
 		super();
+		this.kaytossa=0;
 		
-	}
-	
-	public Aines(Cocktail cocktail){
-		super();
-		this.cocktail = cocktail;
-	}	
+	}		
 	
 	public Aines(double maara, Tyyppi tyyppi, Ainesosa ainesosa) {
 		super();		
 		this.maara = maara;
 		this.tyyppi = tyyppi;
 		this.ainesosa = ainesosa;
-		this.cocktail =null;
+		this.kaytossa=0;
 	}
 	
 	public Aines(double maara, Tyyppi tyyppi, Ainesosa ainesosa, Cocktail cocktail) {
@@ -49,7 +46,18 @@ public class Aines {
 		this.maara = maara;
 		this.tyyppi = tyyppi;
 		this.ainesosa = ainesosa;
-		this.cocktail = cocktail;		
+		this.cocktail = cocktail;
+		this.kaytossa=0;
+	}	
+
+	public Aines(double maara, int kaytossa, Tyyppi tyyppi, Ainesosa ainesosa, Cocktail cocktail) {
+		super();		
+		this.maara = maara;
+		this.kaytossa = kaytossa;
+		this.tyyppi = tyyppi;
+		this.ainesosa = ainesosa;
+		this.cocktail = cocktail;
+		this.kaytossa= kaytossa;
 	}
 
 	public long getAinesId() {
@@ -66,6 +74,14 @@ public class Aines {
 
 	public void setMaara(double maara) {
 		this.maara = maara;
+	}	
+
+	public int getKaytossa() {
+		return kaytossa;
+	}
+
+	public void setKaytossa(int kaytossa) {
+		this.kaytossa = kaytossa;
 	}
 
 	public Tyyppi getTyyppi() {
@@ -95,9 +111,9 @@ public class Aines {
 	@Override
 	public String toString() {
 		if(this.getCocktail()!=null) {
-			return "Aines [ainesId=" + ainesId + ", maara=" + maara + ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() +", cocktail="+this.getCocktail()+"]";
+			return "Aines [ainesId=" + ainesId + ", maara=" + maara +", kaytossa="+kaytossa+ ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() +", cocktail="+this.getCocktail()+"]";
 		}else {
-			return "Aines [ainesId=" + ainesId + ", maara=" + maara + ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() +"]";
+			return "Aines [ainesId=" + ainesId + ", maara=" + maara +", kaytossa="+kaytossa+ ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() +"]";
 		}		
 	}
 	

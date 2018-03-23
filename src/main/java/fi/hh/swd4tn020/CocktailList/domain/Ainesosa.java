@@ -14,8 +14,8 @@ public class Ainesosa {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long ainesosaId;
-	private String ainesosa;
+	private long ainesosaId;	
+	private String ainesosaNimi;
 	
 	@ManyToOne
 	private Tyyppi tyyppi;
@@ -27,9 +27,9 @@ public class Ainesosa {
 		super();
 	}
 
-	public Ainesosa(String ainesosa, Tyyppi tyyppi) {
+	public Ainesosa(String ainesosaNimi, Tyyppi tyyppi) {
 		super();
-		this.ainesosa = ainesosa;
+		this.ainesosaNimi = ainesosaNimi;
 		this.tyyppi = tyyppi;
 	}
 
@@ -41,12 +41,12 @@ public class Ainesosa {
 		this.ainesosaId = ainesosaId;
 	}
 
-	public String getAinesosa() {
-		return ainesosa;
+	public String getAinesosaNimi() {
+		return ainesosaNimi;
 	}
 
-	public void setAinesosa(String ainesosa) {
-		this.ainesosa = ainesosa;
+	public void setAinesosaNimi(String ainesosaNimi) {
+		this.ainesosaNimi = ainesosaNimi;
 	}
 
 	public Tyyppi getTyyppi() {
@@ -67,7 +67,7 @@ public class Ainesosa {
 
 	@Override
 	public String toString() {
-		return "Ainesosa [ainesosaId=" + ainesosaId + ", ainesosa=" + ainesosa + ", tyyppi=" + this.getTyyppi() + "]";
+		return "Ainesosa [ainesosaId=" + ainesosaId + ", ainesosaNimi=" + ainesosaNimi + ", tyyppi=" + this.getTyyppi() + "]";
 	}
 	
 	

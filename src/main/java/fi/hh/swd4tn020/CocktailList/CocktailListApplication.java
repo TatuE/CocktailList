@@ -38,23 +38,63 @@ public class CocktailListApplication {
 		return (args) -> {
 			log.info("save a couple of new cocktail demos");
 			
-			tyyppiRepository.save(new Tyyppi("cl"));
-			tyyppiRepository.save(new Tyyppi("ml"));
-			tyyppiRepository.save(new Tyyppi("dl"));
-			tyyppiRepository.save(new Tyyppi("l"));
+			tyyppiRepository.save(new Tyyppi("ml", "mittayksikko"));
+			tyyppiRepository.save(new Tyyppi("cl", "mittayksikko"));
+			tyyppiRepository.save(new Tyyppi("dl", "mittayksikko"));
+			tyyppiRepository.save(new Tyyppi("l", "mittayksikko"));
 			
-			tyyppiRepository.save(new Tyyppi("g"));
-			tyyppiRepository.save(new Tyyppi("kg"));			
-			tyyppiRepository.save(new Tyyppi("ripaus"));
-			tyyppiRepository.save(new Tyyppi("tippa"));
+			tyyppiRepository.save(new Tyyppi("g", "mittayksikko"));
+			tyyppiRepository.save(new Tyyppi("kg", "mittayksikko"));			
+			tyyppiRepository.save(new Tyyppi("ripaus", "mittayksikko"));
+			tyyppiRepository.save(new Tyyppi("tippa", "mittayksikko"));
 			
-			tyyppiRepository.save(new Tyyppi("Koriste"));
+			tyyppiRepository.save(new Tyyppi("kpl", "mittayksikko"));
 			
-			tyyppiRepository.save(new Tyyppi("Vodka"));
-			tyyppiRepository.save(new Tyyppi("Likööri"));
+			tyyppiRepository.save(new Tyyppi("Koriste", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Mauste", "ainesosa"));
 			
-			tyyppiRepository.save(new Tyyppi("Limonaadi"));
-			tyyppiRepository.save(new Tyyppi("Mehu"));
+			tyyppiRepository.save(new Tyyppi("Viina", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Vodka", "ainesosa"));			
+			tyyppiRepository.save(new Tyyppi("Gin", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Tequila", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Rommi", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Brandy", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Konjakki", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Whisky", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Whiskey", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Bourbon", "ainesosa"));			
+			tyyppiRepository.save(new Tyyppi("Calvados", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Sake", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Likööri", "ainesosa"));
+			
+			tyyppiRepository.save(new Tyyppi("Punaviini", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Valkoviini", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Kuohuviini", "ainesosa"));
+			
+			tyyppiRepository.save(new Tyyppi("Olut", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Siideri", "ainesosa"));		
+			
+			tyyppiRepository.save(new Tyyppi("Limonaadi", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Mehu", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Tee", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Kahvi", "ainesosa"));
+			
+			lasiRepository.save(new Lasi("Grogi"));
+			lasiRepository.save(new Lasi("Rocks"));
+			lasiRepository.save(new Lasi("High ball"));
+			lasiRepository.save(new Lasi("cocktail"));
+			lasiRepository.save(new Lasi("Tuoppi"));
+			lasiRepository.save(new Lasi("Kahvikuppi"));
+			lasiRepository.save(new Lasi("Viinilasi"));
+			lasiRepository.save(new Lasi("Kuohuviinilasi"));
+			lasiRepository.save(new Lasi("Aromilasi"));
+			lasiRepository.save(new Lasi("Shottilasi"));
+			
+			jaaRepository.save(new Jaa("Pala"));
+			jaaRepository.save(new Jaa("Murska"));
+			jaaRepository.save(new Jaa("Ei jäitä"));
+			
+			
 			
 			
 			ainesosaRepository.save(new Ainesosa("Koskenkorva", tyyppiRepository.findByTyyppi("Vodka").get(0)));	
@@ -66,44 +106,21 @@ public class CocktailListApplication {
 			ainesosaRepository.save(new Ainesosa("Ginger ale", tyyppiRepository.findByTyyppi("Limonaadi").get(0)));
 			
 			
-			lasiRepository.save(new Lasi("Grogi"));
-			lasiRepository.save(new Lasi("Rocks"));
+					
+			cocktailRepository.save(new Cocktail("Banaani-Kola",10.00,1,jaaRepository.findByJaaMalli("Murska").get(0), lasiRepository.findByLasiMalli("Rocks").get(0)));
 			
-			jaaRepository.save(new Jaa("Pala"));
-			jaaRepository.save(new Jaa("Murska"));			
+			ainesRepository.save(new Aines(4,1,tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("Banaani-Kola").get(0)));
+			ainesRepository.save(new Aines(12,1, tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("Banaani-Kola").get(0)));			
+			/*	
 			
-			
-			Aines aines1 = new Aines(4,tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosa("Banaani").get(0));
-			Aines aines2 = new Aines(12, tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosa("Coca cola").get(0));
-			
-			
-			Cocktail cocktail1 = new Cocktail("Banaani-Kola",10.00,1,jaaRepository.findByJaaMalli("Murska").get(0), lasiRepository.findByLasiMalli("Rocks").get(0));
-			cocktailRepository.save(cocktail1);
-			aines1.setCocktail(cocktailRepository.findByNimi(cocktail1.getNimi()).get(0));
-			ainesRepository.save(aines1);
-			aines2.setCocktail(cocktailRepository.findByNimi(cocktail1.getNimi()).get(0));
-			ainesRepository.save(aines2);
-		
-			/*
-			Cocktail cocktail2 = cocktailRepository.findByNimi("Banaani-Kola").get(0);
-			
-			for(Aines aines: ainesRepository.findAll()) {
-				if(aines.getCocktail().getNimi().equals(cocktail2.getNimi())&&aines.getCocktail().getKaytossa()!=0) {
-					ainekset.add(aines);
-				}				
-			}
-			cocktail2.setAinekset(ainekset);
-			
-			cocktailRepository.save(cocktail2);
-			*/
 			cocktailRepository.save(new Cocktail("KossuKola", 10.00, 1, jaaRepository.findByJaaMalli("Murska").get(0), lasiRepository.findByLasiMalli("Rocks").get(0)));			
 												
-			ainesRepository.save(new Aines(2,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosa("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
-			ainesRepository.save(new Aines(2,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosa("Banaani").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
-			ainesRepository.save(new Aines(12,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosa("Coca cola").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
+			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola",1).get(0)));
+			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("KossuKola",1).get(0)));
+			ainesRepository.save(new Aines(12,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("KossuKola",1).get(0)));
 					
 			
-			
+			/*
 			log.info("fetch all cocktails");
 			for (Cocktail cocktail : cocktailRepository.findAll()) {
 				log.info(cocktail.toString());
@@ -118,13 +135,11 @@ public class CocktailListApplication {
 					log.info(aines.toString());
 				}				
 			}
-			/*
-			for (Cocktail cocktail : cocktailRepository.findByNimi("Banaani-Kola")) {
-				List<Aines> ainesosat = cocktail.getAinekset();
-				Aines aines = ainesosat.get(0);
-				log.info(aines.toString());
+			
+			for(Ainesosa ainesosa: ainesosaRepository.findAll()) {				
+					log.info(ainesosa.toString());								
 			}
-			*/
+			*/	
 
 		};
 		

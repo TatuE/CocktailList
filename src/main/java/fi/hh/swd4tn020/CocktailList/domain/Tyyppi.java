@@ -15,6 +15,7 @@ public class Tyyppi {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long tyyppiId;
 	private String tyyppi;
+	private String yksikkoLuokka; 
 	
 	@OneToMany
 	private List<Ainesosa> ainesosat;
@@ -27,10 +28,10 @@ public class Tyyppi {
 		
 	}
 
-	public Tyyppi(String tyyppi) {
+	public Tyyppi(String tyyppi, String yksikkoLuokka) {
 		super();
 		this.tyyppi = tyyppi;
-		
+		this.yksikkoLuokka = yksikkoLuokka;
 	}
 
 	public long getTyyppiId() {
@@ -47,6 +48,14 @@ public class Tyyppi {
 
 	public void setTyyppi(String tyyppi) {
 		this.tyyppi = tyyppi;
+	}
+
+	public String getYksikkoLuokka() {
+		return yksikkoLuokka;
+	}
+
+	public void setYksikkoLuokka(String yksikkoLuokka) {
+		this.yksikkoLuokka = yksikkoLuokka;
 	}
 
 	public List<Ainesosa> getAinesosat() {

@@ -27,10 +27,11 @@
      <th>Ainekset</th> 
      </tr>
      <tr th:each = "aines : ${aines}">
-    		<td th:text="${aines.ainesosa.ainesosa}"></td>
+    		<td th:text="${aines.ainesosa.ainesosaNimi}"></td>
     		<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
     		<td th:text="${aines.maara}"></td>
-    		<td th:text="${aines.tyyppi.tyyppi}"></td>     					   		
+    		<td th:text="${aines.tyyppi.tyyppi}"></td>
+    		<td><a th:href="@{/cocktaillista}" class="btn btn-danger">Poista</a></td>     					   		
      </tr>         
      </table>
      <a href="/cocktaillista" class="btn btn-success">Palaa valikkoon</a>

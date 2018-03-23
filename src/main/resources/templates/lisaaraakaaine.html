@@ -22,7 +22,7 @@
 			<div style="clear: both; display: block; height: 10px;"></div>		  			
 			<label for="ainesosaLista">Ainesosa</label>
 			 <select id="ainesosaLista" th:field="*{ainesosa}" class="form-control">
-       			<option th:each="ainesosa: ${ainesosa}" th:value="${ainesosa.ainesosaId}" th:text="${ainesosa.ainesosa}"></option>
+       			<option th:each="ainesosa: ${ainesosa}" th:value="${ainesosa.ainesosaId}" th:text="${ainesosa.ainesosaNimi}"></option>
     		</select>			
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<label for="cocktailLista">Cocktail</label>
