@@ -111,16 +111,16 @@ public class CocktailListApplication {
 			
 			ainesRepository.save(new Aines(4,1,tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("Banaani-Kola").get(0)));
 			ainesRepository.save(new Aines(12,1, tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("Banaani-Kola").get(0)));			
-			/*	
+				
 			
 			cocktailRepository.save(new Cocktail("KossuKola", 10.00, 1, jaaRepository.findByJaaMalli("Murska").get(0), lasiRepository.findByLasiMalli("Rocks").get(0)));			
 												
-			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola",1).get(0)));
-			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("KossuKola",1).get(0)));
-			ainesRepository.save(new Aines(12,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("KossuKola",1).get(0)));
+			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
+			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
+			ainesRepository.save(new Aines(12,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
 					
 			
-			/*
+			
 			log.info("fetch all cocktails");
 			for (Cocktail cocktail : cocktailRepository.findAll()) {
 				log.info(cocktail.toString());
@@ -139,7 +139,7 @@ public class CocktailListApplication {
 			for(Ainesosa ainesosa: ainesosaRepository.findAll()) {				
 					log.info(ainesosa.toString());								
 			}
-			*/	
+			
 
 		};
 		

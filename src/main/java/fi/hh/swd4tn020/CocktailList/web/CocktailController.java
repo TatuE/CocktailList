@@ -102,7 +102,7 @@ public class CocktailController {
 	public String poistacocktail(@PathVariable("id") Long cocktailId) {
 		Cocktail cocktail = cocktailRepository.findOne(cocktailId);
 		cocktail.setKaytossa(0);
-		for(Aines aines: ainesRepository.findByKaytossa(cocktail, 1)) {
+		for(Aines aines: ainesRepository.findByCocktail(cocktail)) {
 			aines.setKaytossa(0);
 			ainesRepository.save(aines);
 		}
