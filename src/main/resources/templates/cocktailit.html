@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>	
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cocktail lista</title>
+</head>
+<body>     
+     <table class="table table-striped">
+     <tr>
+     	<th>Nimi</th>   
+     	<td th:text="*{cocktaili.nimi}"></td>     	
+     </tr>
+     <tr>
+     	<th>Hinta</th>   
+     	<td th:text="*{cocktaili.hinta}"></td>     	
+     </tr>
+     <tr>
+     	<th>Lasimalli</th>   
+     	<td th:text="*{cocktaili.lasi.lasiMalli}"></td>     	
+     </tr>
+     <tr>
+     	<th>Jäät</th>   
+     	<td th:text="*{cocktaili.jaa.jaaMalli}"></td>     	
+     </tr>
+     <tr>
+     <th>Ainekset</th> 
+     </tr>
+     <tr th:each = "aines : ${aines}">
+    		<td th:text="${aines.ainesosa.ainesosa}"></td>
+    		<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
+    		<td th:text="${aines.maara}"></td>
+    		<td th:text="${aines.tyyppi.tyyppi}"></td>     					   		
+     </tr>         
+     </table>
+     <a href="/cocktaillista" class="btn btn-success">Palaa valikkoon</a>
+     <a href="/lisaaraakaaine" class="btn btn-success">Lisää uusi Raaka-aine</a>
+       
+</body>
+</html>

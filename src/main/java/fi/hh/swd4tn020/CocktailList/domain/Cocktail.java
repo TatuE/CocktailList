@@ -39,7 +39,7 @@ public class Cocktail {
 		super();		
 		this.nimi = nimi;
 		this.hinta = hinta;
-		this.kaytossa = kaytossa;
+		this.kaytossa = kaytossa;		
 	}
 
 	public Cocktail(String nimi, double hinta, int kaytossa, Jaa jaa, Lasi lasi) {
@@ -48,7 +48,7 @@ public class Cocktail {
 		this.hinta = hinta;
 		this.kaytossa = kaytossa;
 		this.jaa = jaa;
-		this.lasi = lasi;	
+		this.lasi = lasi;		
 	}
 
 	public long getCocktailId() {
