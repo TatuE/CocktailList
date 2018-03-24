@@ -3,13 +3,14 @@
 <head>	
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lisaa cocktail</title>
+<title>Muuta cocktail</title>
 </head>
 <body>
-	<h2>Lisää uusi cocktail</h2>
+	<h2>Muuta cocktail</h2>
 	
 	<div>
-		<form th:object="${cocktail}" th:action="@{lisaacocktail}" action="#" method="post">			
+		<form th:object="${cocktail}" th:action="@{muutacocktail}" action="#" method="post">
+			<input type="hidden" id="id" th:field="*{cocktailId}"/>
 		  	<label for="nimi">Nimi</label>
 			<input type="text" id="nimi" th:field="*{nimi}"/>
 			<div style="clear: both; display: block; height: 10px;"></div>
@@ -28,7 +29,7 @@
     		</select>			
 			<div style="clear: both; display: block; height: 10px;"></div>			
 			
-			<input type="submit" value="Tallenna uusi cocktail ja jatka"></input>		
+			<input type="submit" value="Tallenna muutokset ja jatka"></input>		
 		</form>		
 	</div>
 

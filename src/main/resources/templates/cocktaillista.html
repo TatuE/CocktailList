@@ -17,6 +17,7 @@
     		<td th:text="${cocktail.nimi}"></td>
     		    
     		<td><a th:href="@{/cocktailit/{id}(id=${cocktail.cocktailId})}" class="btn btn-info">Näytä</a></td>
+    		<td><a th:href="@{/muutacocktail/{id}(id=${cocktail.cocktailId})}" class="btn btn-info">Muuta</a></td>
     		<td><a th:href="@{/poistacocktail/{id}(id=${cocktail.cocktailId})}" class="btn btn-danger">Poista</a></td>   					   		
     	</tr>
      </table>

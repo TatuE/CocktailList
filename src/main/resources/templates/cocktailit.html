@@ -9,19 +9,19 @@
      <table class="table table-striped">
      <tr>
      	<th>Nimi</th>   
-     	<td th:text="*{cocktaili.nimi}"></td>     	
+     	<td th:text="*{cocktail.nimi}"></td>     	
      </tr>
      <tr>
      	<th>Hinta</th>   
-     	<td th:text="*{cocktaili.hinta}"></td>     	
+     	<td th:text="*{cocktail.hinta}"></td>     	
      </tr>
      <tr>
      	<th>Lasimalli</th>   
-     	<td th:text="*{cocktaili.lasi.lasiMalli}"></td>     	
+     	<td th:text="*{cocktail.lasi.lasiMalli}"></td>     	
      </tr>
      <tr>
      	<th>Jäät</th>   
-     	<td th:text="*{cocktaili.jaa.jaaMalli}"></td>     	
+     	<td th:text="*{cocktail.jaa.jaaMalli}"></td>     	
      </tr>
      <tr>
      <th>Ainekset</th> 
@@ -31,11 +31,12 @@
     		<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
     		<td th:text="${aines.maara}"></td>
     		<td th:text="${aines.tyyppi.tyyppi}"></td>
-    		<td><a th:href="@{/cocktaillista}" class="btn btn-danger">Poista</a></td>     					   		
+    		<td><a th:href="@{/muutaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-info">Muuta</a></td> 
+    		<td><a th:href="@{/poistaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-danger">Poista</a></td>      					   		
      </tr>         
      </table>
      <a href="/cocktaillista" class="btn btn-success">Palaa valikkoon</a>
-     <a href="/lisaaraakaaine" class="btn btn-success">Lisää uusi Raaka-aine</a>
+     <a th:href="@{/lisaaraakaaine/{id}(id=${cocktail.cocktailId})}" class="btn btn-success">Lisää uusi Raaka-aine</a>
        
 </body>
 </html>
