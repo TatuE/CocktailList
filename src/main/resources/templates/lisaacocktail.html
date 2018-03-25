@@ -11,10 +11,12 @@
 	<div>
 		<form th:object="${cocktail}" th:action="@{lisaacocktail}" action="#" method="post">			
 		  	<label for="nimi">Nimi</label>
-			<input type="text" id="nimi" th:field="*{nimi}"/>
+			<input type="text" id="nimi" th:field="*{nimi}"/> <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> Nimi virhe</p>
+						
 			<div style="clear: both; display: block; height: 10px;"></div>
 		  	<label for="hinta">Hinta</label>
-			<input type="text" id="hinta" th:field="*{hinta}"/>
+			<input type="number" id="hinta" th:field="*{hinta}"/> <p th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"> Hinta virhe</p>
+			
 			<div style="clear: both; display: block; height: 10px;"></div>		  			
 			<label for="lasiLista">Lasi malli</label>
 			 <select id="lasiLista" th:field="*{lasi}" class="form-control">

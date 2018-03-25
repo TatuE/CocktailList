@@ -7,24 +7,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cocktail {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@NotNull
 	private long cocktailId;
+	
+	@NotNull
+	@Size(min=1)
 	private String nimi;
+	
+	@NotNull	
 	private double hinta;
+	
+	@NotNull
 	private int kaytossa;
 
-	
+	@JsonIgnore
 	@ManyToOne
+	@JoinColumn(name = "jaaId")
 	private Jaa jaa;
 	
+	@JsonIgnore
 	@ManyToOne
+	@JoinColumn(name = "lasiId")
 	private Lasi lasi;
 	
 	@OneToMany

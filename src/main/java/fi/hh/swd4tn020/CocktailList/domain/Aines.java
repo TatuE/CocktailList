@@ -4,7 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -19,12 +22,18 @@ public class Aines {
 	
 	
 	@ManyToOne
-	private Tyyppi tyyppi;
+	@JsonIgnore
+	@JoinColumn(name = "tyyppiId")
+	private Tyyppi tyyppi;	
 	
 	@ManyToOne
-	private Ainesosa ainesosa;
+	@JsonIgnore
+	@JoinColumn(name = "ainesosaId")
+	private Ainesosa ainesosa;	
 	
 	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "cocktailId")
 	private Cocktail cocktail;
 
 	public Aines(){

@@ -3,9 +3,12 @@ package fi.hh.swd4tn020.CocktailList.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,21 +72,30 @@ public class CocktailController {
 	}
 	
 	@RequestMapping(value="/lisaacocktail", method=RequestMethod.POST)
-	public String lisaacocktail(Cocktail cocktail, Model model) {
-			cocktail.setKaytossa(1);
+	public String lisaacocktail(@Valid Cocktail cocktail, BindingResult bindingResult, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+            return "lisaacocktail";
+        }else {
+        	cocktail.setKaytossa(1);
 			cocktailRepository.save(cocktail);
 			Cocktail haku = cocktailRepository.findByNimi(cocktail.getNimi()).get(0);
 			long id = haku.getCocktailId();
-			return "redirect:/cocktailit/"+id+"";		
+			return "redirect:/cocktailit/"+id+"";	
+        }			
 	}
 	
 	@RequestMapping(value="/lisaaraakaaine/{id}", method=RequestMethod.GET)
-	public String lisaaRaakaaine(@PathVariable("id") Long cocktailId, Model model) {					
+	public String lisaaRaakaaine(@PathVariable("id") Long cocktailId, Model model) {
+		if(cocktailId==-1) {
+			model.addAttribute("cocktail",cocktailRepository.findAll());
+		}else {
 			model.addAttribute("cocktail",cocktailRepository.findOne(cocktailId));
-			model.addAttribute("aines", new Aines());
-			model.addAttribute("tyyppi", tyyppiRepository.findByYksikkoLuokka("mittayksikko"));			
-			model.addAttribute("ainesosa", ainesosaRepository.findAll());			
-			return "lisaaraakaaine";				
+		}			
+		model.addAttribute("aines", new Aines());
+		model.addAttribute("tyyppi", tyyppiRepository.findByYksikkoLuokka("mittayksikko"));			
+		model.addAttribute("ainesosa", ainesosaRepository.findAll());			
+		return "lisaaraakaaine";				
 	}
 	
 	@RequestMapping(value="/lisaaraakaaine/lisaaraakaaine", method=RequestMethod.POST)
