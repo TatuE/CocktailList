@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>	
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lisaa cocktail</title>
-</head>
-<body>
-	<h2>Lisää uusi cocktail</h2>
+	<head>	
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Lisaa cocktail</title>
+	</head>
+	<body>
+		<div th:if="${#httpServletRequest.remoteUser}!=null" >
+			<div align="center">	
+				<h3 th:inline="text">Kirjautuneena: [[${#httpServletRequest.remoteUser}]]</h3>
+			</div>
+			<div style="float:right">
+				<form th:action="@{/logout}" method="post">
+		            	<input type="submit" value="Kirjaudu ulos" class="btn btn-danger"/>
+		    	</form>
+		    </div>
+	    </div>
+		<h2>Lisää uusi cocktail</h2>
+		
+		<div>
+			<form th:object="${cocktail}" th:action="@{lisaacocktail}" action="#" method="post">			
+			  	<label for="nimi">Nimi</label>
+				<input type="text" id="nimi" th:field="*{nimi}"/> <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> Nimi virhe</p>
+							
+				<div style="clear: both; display: block; height: 10px;"></div>
+			  	<label for="hinta">Hinta</label>
+				<input type="number" id="hinta" th:field="*{hinta}"/> <p th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"> Hinta virhe</p>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>		  			
+				<label for="lasiLista">Lasi malli</label>
+				 <select id="lasiLista" th:field="*{lasi}" class="form-control">
+	       			<option th:each="lasi: ${lasi}" th:value="${lasi.lasiId}" th:text="${lasi.lasiMalli}"></option>
+	    		</select>			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<div style="clear: both; display: block; height: 10px;"></div>		  			
+				<label for="jaaLista">Jäät</label>
+				 <select id="jaaLista" th:field="*{jaa}" class="form-control">
+	       			<option th:each="jaa: ${jaa}" th:value="${jaa.jaaId}" th:text="${jaa.jaaMalli}"></option>
+	    		</select>			
+				<div style="clear: both; display: block; height: 10px;"></div>			
+				
+				<input type="submit" value="Tallenna uusi cocktail ja jatka"></input>		
+			</form>		
+		</div>
 	
-	<div>
-		<form th:object="${cocktail}" th:action="@{lisaacocktail}" action="#" method="post">			
-		  	<label for="nimi">Nimi</label>
-			<input type="text" id="nimi" th:field="*{nimi}"/> <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> Nimi virhe</p>
-						
-			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="hinta">Hinta</label>
-			<input type="number" id="hinta" th:field="*{hinta}"/> <p th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"> Hinta virhe</p>
-			
-			<div style="clear: both; display: block; height: 10px;"></div>		  			
-			<label for="lasiLista">Lasi malli</label>
-			 <select id="lasiLista" th:field="*{lasi}" class="form-control">
-       			<option th:each="lasi: ${lasi}" th:value="${lasi.lasiId}" th:text="${lasi.lasiMalli}"></option>
-    		</select>			
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<div style="clear: both; display: block; height: 10px;"></div>		  			
-			<label for="jaaLista">Jäät</label>
-			 <select id="jaaLista" th:field="*{jaa}" class="form-control">
-       			<option th:each="jaa: ${jaa}" th:value="${jaa.jaaId}" th:text="${jaa.jaaMalli}"></option>
-    		</select>			
-			<div style="clear: both; display: block; height: 10px;"></div>			
-			
-			<input type="submit" value="Tallenna uusi cocktail ja jatka"></input>		
-		</form>		
-	</div>
-
-</body>
+	</body>
 </html>

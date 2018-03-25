@@ -19,10 +19,7 @@ public class Kayttaja {
 	
 	@Column(name="salasana", nullable=false)
 	private String salasana;
-	
-	@Column(name="email", nullable=false)
-	private String email;
-	
+		
 	@Column(name="rooli", nullable=false)
 	private String rooli;
 
@@ -31,11 +28,10 @@ public class Kayttaja {
 		
 	}
 
-	public Kayttaja(String kayttajaNimi, String salasana, String email, String rooli) {
+	public Kayttaja(String kayttajaNimi, String salasana, String rooli) {
 		super();
 		this.kayttajaNimi = kayttajaNimi;
-		this.salasana = salasana;
-		this.email = email;
+		this.salasana = salasana;		
 		this.rooli = rooli;
 	}
 
@@ -61,15 +57,7 @@ public class Kayttaja {
 
 	public void setSalasana(String salasana) {
 		this.salasana = salasana;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	}	
 
 	public String getRooli() {
 		return rooli;

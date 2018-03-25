@@ -1,42 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>	
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cocktail lista</title>
-</head>
-<body>     
-     <table class="table table-striped">
-     <tr>
-     	<th>Nimi</th>   
-     	<td th:text="*{cocktail.nimi}"></td>     	
-     </tr>
-     <tr>
-     	<th>Hinta</th>   
-     	<td th:text="*{cocktail.hinta}"></td>     	
-     </tr>
-     <tr>
-     	<th>Lasimalli</th>   
-     	<td th:text="*{cocktail.lasi.lasiMalli}"></td>     	
-     </tr>
-     <tr>
-     	<th>Jäät</th>   
-     	<td th:text="*{cocktail.jaa.jaaMalli}"></td>     	
-     </tr>
-     <tr>
-     <th>Ainekset</th> 
-     </tr>
-     <tr th:each = "aines : ${aines}">
-    		<td th:text="${aines.ainesosa.ainesosaNimi}"></td>
-    		<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
-    		<td th:text="${aines.maara}"></td>
-    		<td th:text="${aines.tyyppi.tyyppi}"></td>
-    		<td><a th:href="@{/muutaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-info">Muuta</a></td> 
-    		<td><a th:href="@{/poistaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-danger">Poista</a></td>      					   		
-     </tr>         
-     </table>
-     <a href="/cocktaillista" class="btn btn-success">Palaa valikkoon</a>
-     <a th:href="@{/lisaaraakaaine/{id}(id=${cocktail.cocktailId})}" class="btn btn-success">Lisää uusi Raaka-aine</a>
-       
-</body>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>	
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Cocktail lista</title>
+	</head>
+	<body>
+		<div th:if="${#httpServletRequest.remoteUser}!=null" >
+			<div align="center">	
+				<h3 th:inline="text">Kirjautuneena: [[${#httpServletRequest.remoteUser}]]</h3>
+			</div>
+			<div style="float:right">
+				<form th:action="@{/logout}" method="post">
+		            	<input type="submit" value="Kirjaudu ulos" class="btn btn-danger"/>
+		    	</form>
+		    </div>
+	    </div>
+	    <div th:if="${#httpServletRequest.remoteUser}==null" >
+	    	<div style="float:right">
+				<a th:href="@{/login}" class="btn btn-info">Kirjaudu sisään</a>	
+		    </div>
+	    </div>
+	    	     
+		<table class="table table-striped">
+	    <tr>
+	    	<th>Nimi</th>   
+	     	<td th:text="*{cocktail.nimi}"></td>     	
+	    </tr>
+	    <tr>
+	    	<th>Hinta</th>   
+	     	<td th:text="*{cocktail.hinta}"></td>     	
+	    </tr>
+	    <tr>
+	     	<th>Lasimalli</th>   
+	     	<td th:text="*{cocktail.lasi.lasiMalli}"></td>     	
+	    </tr>
+	    <tr>
+	    	<th>Jäät</th>   
+	     	<td th:text="*{cocktail.jaa.jaaMalli}"></td>     	
+	    </tr>
+	    <tr>
+	    <th>Ainekset</th> 
+	    </tr>
+	    <tr th:each = "aines : ${aines}">
+	    	<td th:text="${aines.ainesosa.ainesosaNimi}"></td>
+	    	<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
+	    	<td th:text="${aines.maara}"></td>
+	    	<td th:text="${aines.tyyppi.tyyppi}"></td>
+	    	<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muutaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-info">Muuta</a></td> 
+	    	<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-danger">Poista</a></td>      					   		
+	    </tr>         
+	    </table>
+	    <a href="/cocktaillista" class="btn btn-success">Palaa valikkoon</a>
+	    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lisaaraakaaine/{id}(id=${cocktail.cocktailId})}" class="btn btn-success">Lisää uusi Raaka-aine</a>
+	       
+	</body>
 </html>

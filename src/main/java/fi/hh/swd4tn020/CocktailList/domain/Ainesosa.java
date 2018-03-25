@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -17,9 +19,10 @@ public class Ainesosa {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long ainesosaId;	
-	private String ainesosaNimi;
+	private long ainesosaId;
 	
+	@NotEmpty(message="Ainesosan nimi ei saa olla tyhjä!")
+	private String ainesosaNimi;	
 	
 	@ManyToOne
 	@JsonIgnore
@@ -31,6 +34,11 @@ public class Ainesosa {
 
 	public Ainesosa() {
 		super();
+	}
+
+	public Ainesosa(String ainesosaNimi) {
+		super();
+		this.ainesosaNimi = ainesosaNimi;
 	}
 
 	public Ainesosa(String ainesosaNimi, Tyyppi tyyppi) {

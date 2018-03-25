@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fi.hh.swd4tn020.CocktailList.domain.Aines;
 import fi.hh.swd4tn020.CocktailList.domain.AinesRepository;
@@ -18,6 +19,8 @@ import fi.hh.swd4tn020.CocktailList.domain.Cocktail;
 import fi.hh.swd4tn020.CocktailList.domain.CocktailRepository;
 import fi.hh.swd4tn020.CocktailList.domain.Jaa;
 import fi.hh.swd4tn020.CocktailList.domain.JaaRepository;
+import fi.hh.swd4tn020.CocktailList.domain.Kayttaja;
+import fi.hh.swd4tn020.CocktailList.domain.KayttajaRepository;
 import fi.hh.swd4tn020.CocktailList.domain.Lasi;
 import fi.hh.swd4tn020.CocktailList.domain.LasiRepository;
 import fi.hh.swd4tn020.CocktailList.domain.Tyyppi;
@@ -34,7 +37,7 @@ public class CocktailListApplication {
 	
 	@Bean
 	public CommandLineRunner CocktailDemo(CocktailRepository cocktailRepository, JaaRepository jaaRepository, LasiRepository lasiRepository, TyyppiRepository tyyppiRepository,
-			AinesosaRepository ainesosaRepository, AinesRepository ainesRepository) {
+			AinesosaRepository ainesosaRepository, AinesRepository ainesRepository, KayttajaRepository kayttajaRepository ) {
 		return (args) -> {
 			log.info("save a couple of new cocktail demos");
 			
@@ -119,6 +122,14 @@ public class CocktailListApplication {
 			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
 			ainesRepository.save(new Aines(12,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
 					
+			String adminPassword= "salasanaAdmin";			
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String adminPwd = passwordEncoder.encode(adminPassword);			
+			
+			//admin = salasanaAdmin
+			
+			Kayttaja kayttajaAdmin = new Kayttaja("admin", adminPwd, "ADMIN");			
+			kayttajaRepository.save(kayttajaAdmin);
 			
 			
 			log.info("fetch all cocktails");

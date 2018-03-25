@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>	
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lisaa uusi ainesosa</title>
-</head>
-<body>
-	<h2>Lisaa uusi ainesosa</h2>
+	<head>	
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Lisaa uusi ainesosa</title>
+	</head>
+	<body>
+		<div th:if="${#httpServletRequest.remoteUser}!=null" >
+			<div align="center">	
+				<h3 th:inline="text">Kirjautuneena: [[${#httpServletRequest.remoteUser}]]</h3>
+			</div>
+			<div style="float:right">
+				<form th:action="@{/logout}" method="post">
+		            	<input type="submit" value="Kirjaudu ulos" class="btn btn-danger"/>
+		    	</form>
+		    </div>
+	    </div>
+		<h2>Lisaa uusi ainesosa</h2>
+		
+		<div>
+			<form th:object="${ainesosa}" th:action="@{lisaa-ainesosa}" action="#" method="post">		  	
+			  	<label for="ainesosaNimi"> Uusi ainesosa</label>
+				<input type="text" id="ainesosaNimi" th:field="*{ainesosaNimi}"/> <p th:if="${#fields.hasErrors('ainesosaNimi')}" th:errors="*{ainesosaNimi}"> Nimi virhe</p>
+				<div style="clear: both; display: block; height: 10px;"></div>		  		  			
+				<label for="tyyppiLista">Tyyppi</label>
+				 <select id="tyyppiLista" th:field="*{tyyppi}" class="form-control">
+	       			<option th:each="tyyppi: ${tyyppi}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppi}"></option>
+	    		</select>			
+				<div style="clear: both; display: block; height: 10px;"></div>			
+				<input type="submit" value="Tallenna uusi ainesosa"></input>		
+			</form>			
+		</div>	
 	
-	<div>
-		<form th:object="${ainesosa}" th:action="@{lisaa-ainesosa}" action="#" method="post">		  	
-		  	<label for="ainesosaNimi"> Uusi ainesosa</label>
-			<input type="text" id="ainesosaNimi" th:field="*{ainesosaNimi}"/>
-			<div style="clear: both; display: block; height: 10px;"></div>		  		  			
-			<label for="tyyppiLista">Tyyppi</label>
-			 <select id="tyyppiLista" th:field="*{tyyppi}" class="form-control">
-       			<option th:each="tyyppi: ${tyyppi}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppi}"></option>
-    		</select>			
-			<div style="clear: both; display: block; height: 10px;"></div>			
-			<input type="submit" value="Tallenna uusi ainesosa"></input>		
-		</form>			
-	</div>	
-
-</body>
+	</body>
 </html>

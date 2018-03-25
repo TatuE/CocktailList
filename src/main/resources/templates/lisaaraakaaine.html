@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>	
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lisaa raaka-aine</title>
-</head>
-<body>
-	<h2>Lisää uusi raaka-aine</h2>
+	<head>	
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Lisaa raaka-aine</title>
+	</head>
+	<body>
+		<div th:if="${#httpServletRequest.remoteUser}!=null" >
+			<div align="center">	
+				<h3 th:inline="text">Kirjautuneena: [[${#httpServletRequest.remoteUser}]]</h3>
+			</div>
+			<div style="float:right">
+				<form th:action="@{/logout}" method="post">
+		            	<input type="submit" value="Kirjaudu ulos" class="btn btn-danger"/>
+		    	</form>
+		    </div>
+	    </div>
+		<h2>Lisää uusi raaka-aine</h2>
+		
+		<div>
+			<form th:object="${aines}" th:action="@{lisaaraakaaine}" action="#" method="post">
+				<input type="hidden" id="ainesId" th:field="*{ainesId}"/>							
+			  	<label for="maara">Määrä</label>
+				<input type="number" id="maara" th:field="*{maara}"/> <p th:if="${#fields.hasErrors('maara')}" th:errors="*{maara}"> Maara virhe</p>
+				<div style="clear: both; display: block; height: 10px;"></div>		  		  			
+				<label for="tyyppiLista">Tyyppi</label>
+				 <select id="tyyppiLista" th:field="*{tyyppi}" class="form-control">
+	       			<option th:each="tyyppi: ${tyyppi}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppi}"></option>
+	    		</select>			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<div style="clear: both; display: block; height: 10px;"></div>		  			
+				<label for="ainesosaLista">Ainesosa</label>
+				 <select id="ainesosaLista" th:field="*{ainesosa}" class="form-control">
+	       			<option th:each="ainesosa: ${ainesosa}" th:value="${ainesosa.ainesosaId}" th:text="${ainesosa.ainesosaNimi}"></option>
+	    		</select>			
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="cocktailLista">Cocktail</label>
+				 <select id="cocktailLista" th:field="*{cocktail}" class="form-control">
+	       			<option th:each="cocktail: ${cocktail}" th:value="${cocktail.cocktailId}" th:text="${cocktail.nimi}"></option>
+	    		</select>			
+				<div style="clear: both; display: block; height: 10px;"></div>
+						
+				
+				<input type="submit" value="Tallenna ainesosa"></input>		
+			</form>			
+		</div>	
 	
-	<div>
-		<form th:object="${aines}" th:action="@{lisaaraakaaine}" action="#" method="post">
-			<input type="hidden" id="ainesId" th:field="*{ainesId}"/>							
-		  	<label for="maara">Määrä</label>
-			<input type="number" id="maara" th:field="*{maara}"/>
-			<div style="clear: both; display: block; height: 10px;"></div>		  		  			
-			<label for="tyyppiLista">Tyyppi</label>
-			 <select id="tyyppiLista" th:field="*{tyyppi}" class="form-control">
-       			<option th:each="tyyppi: ${tyyppi}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppi}"></option>
-    		</select>			
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<div style="clear: both; display: block; height: 10px;"></div>		  			
-			<label for="ainesosaLista">Ainesosa</label>
-			 <select id="ainesosaLista" th:field="*{ainesosa}" class="form-control">
-       			<option th:each="ainesosa: ${ainesosa}" th:value="${ainesosa.ainesosaId}" th:text="${ainesosa.ainesosaNimi}"></option>
-    		</select>			
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="cocktailLista">Cocktail</label>
-			 <select id="cocktailLista" th:field="*{cocktail}" class="form-control">
-       			<option th:each="cocktail: ${cocktail}" th:value="${cocktail.cocktailId}" th:text="${cocktail.nimi}"></option>
-    		</select>			
-			<div style="clear: both; display: block; height: 10px;"></div>
-					
-			
-			<input type="submit" value="Tallenna ainesosa"></input>		
-		</form>			
-	</div>	
-
-</body>
+	</body>
 </html>
