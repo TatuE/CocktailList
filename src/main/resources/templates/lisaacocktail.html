@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>	
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+		<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Lisaa cocktail</title>
 	</head>
 	<body>
-		<div th:if="${#httpServletRequest.remoteUser}!=null" >
-			<div align="center">	
-				<h3 th:inline="text">Kirjautuneena: [[${#httpServletRequest.remoteUser}]]</h3>
+		<div class="row">
+			<div class="col-sm-4">
+		 		<h2>>Lisää uusi cocktail</h2>
+			 </div>		
+			<div class="col-sm-4">
+				<div th:if="${#httpServletRequest.remoteUser}!=null" >
+					<div align="center">	
+						<h3 th:inline="text">Kirjautuneena: [[${#httpServletRequest.remoteUser}]]</h3>
+					</div>
+				</div>
 			</div>
-			<div style="float:right">
-				<form th:action="@{/logout}" method="post">
-		            	<input type="submit" value="Kirjaudu ulos" class="btn btn-danger"/>
-		    	</form>
-		    </div>
-	    </div>
-		<h2>Lisää uusi cocktail</h2>
+			<div class="col-sm-4">				
+				<div style="float:right" th:if="${#httpServletRequest.remoteUser}!=null">
+					<form th:action="@{/logout}" method="post">
+			        	<input type="submit" value="Kirjaudu ulos" class="btn btn-danger"/>
+			    	</form>
+			    </div>		    
+		    	<div style="float:right" th:if="${#httpServletRequest.remoteUser}==null" >		    	
+					<a th:href="@{/login}" class="btn btn-info">Kirjaudu sisään</a>	
+			    </div>
+		    </div>		
+		</div>			
 		
 		<div>
 			<form th:object="${cocktail}" th:action="@{lisaacocktail}" action="#" method="post">			
@@ -40,7 +51,7 @@
 	    		</select>			
 				<div style="clear: both; display: block; height: 10px;"></div>			
 				
-				<input type="submit" value="Tallenna uusi cocktail ja jatka"></input>		
+				<input type="submit" value="Tallenna uusi cocktail ja jatka" class="btn btn-success"></input>		
 			</form>		
 		</div>
 	

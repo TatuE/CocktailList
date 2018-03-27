@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <head>
+    	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+   		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Book store login</title>
     </head>
     <body>        
-        <form th:action="@{/login}" method="post">
-            <div><label> Käyttäjänimi : <input type="text" name="username"/> </label></div>
-            <div><label> Salasana: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Kirjaudu sisään"/></div>
+        <form  class="form-inline" th:action="@{/login}" method="post">
+            <div class="form-group">
+            	<label for="username"> Käyttäjänimi:</label>
+            	<input class="form-control" type="text" name="username"/>
+            </div>
+            <div class="form-group">
+            	<label for="password"> Salasana: </label>
+            	<input class="form-control" type="password" name="password"/>
+            </div>
+            <div>
+            	<input class="btn btn-default"  type="submit" value="Kirjaudu sisään"/>
+            </div>
         </form>
         <div th:if="${param.error}">
-            Väärä käyttäjänimi tai salasana!
+            <h5>Väärä käyttäjänimi tai salasana!</h5>
         </div>
         <div th:if="${param.logout}">
-            You have been logged out.
+            <h5>Olet kirjautunut ulos!</h5>
         </div>
     </body>
 </html>
