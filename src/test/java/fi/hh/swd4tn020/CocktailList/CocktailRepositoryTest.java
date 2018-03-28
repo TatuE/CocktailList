@@ -21,7 +21,7 @@ public class CocktailRepositoryTest {
 	
 	@Test
 		public void findByNimi() {
-			List<Cocktail> cocktails = cocktailRepository.findByNimi("KossuKola");
+			List<Cocktail> cocktails = cocktailRepository.findByNimi("Napue tonic");
 			assertThat(cocktails).hasSize(1);
 			assertThat(cocktails.get(0).getHinta()==10);	
 		}

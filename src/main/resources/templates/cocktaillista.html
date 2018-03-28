@@ -24,11 +24,10 @@
 			    	</form>
 			    </div>		    
 		    	<div style="float:right" th:if="${#httpServletRequest.remoteUser}==null" >		    	
-					<a th:href="@{/login}" class="btn btn-info">Kirjaudu sisään</a>	
+					<a th:href="@{/login}" class="btn btn-primary">Kirjaudu sisään</a>	
 			    </div>
 		    </div>		
-		</div>		           	
-		
+		</div>		
 		<table class="table table-condensed">
 			<tr>
 			    <th>Cocktailit</th>
@@ -37,15 +36,14 @@
 			    <th sec:authorize="hasAuthority('ADMIN')"></th>		    		    
 			</tr>  
 	    	<tr th:each = "cocktail : ${cocktailit}">
-	    		<td th:text="${cocktail.nimi}"></td>
-	    		    
+	    		<td th:text="${cocktail.nimi}"></td>	    		    
 	    		<td><a th:href="@{/cocktailit/{id}(id=${cocktail.cocktailId})}" class="btn btn-info">Näytä</a></td>
-	    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muutacocktail/{id}(id=${cocktail.cocktailId})}" class="btn btn-info">Muuta</a></td>
+	    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muutacocktail/{id}(id=${cocktail.cocktailId})}" class="btn btn-success">Muuta</a></td>
 	    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistacocktail/{id}(id=${cocktail.cocktailId})}" class="btn btn-danger">Poista</a></td>   					   		
 	    	</tr>
 	     </table>
-	     <a sec:authorize="hasAuthority('ADMIN')" href="/lisaacocktail" class="btn btn-success">Lisää uusi cocktail</a>
-	     <a sec:authorize="hasAuthority('ADMIN')" href="/lisaaraakaaine/-1" class="btn btn-success">Lisää uusi raaka-aine</a>
-	     <a sec:authorize="hasAuthority('ADMIN')" href="/lisaa-ainesosa" class="btn btn-success">Lisää uusi ainesosa </a>           
+	     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lisaacocktail}" class="btn btn-success">Lisää uusi cocktail</a>
+	     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lisaaraakaaine/-1}" class="btn btn-success">Lisää uusi raaka-aine</a>
+	     <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lisaa-ainesosa}" class="btn btn-success">Lisää uusi ainesosa </a>           
 	</body>
 </html>

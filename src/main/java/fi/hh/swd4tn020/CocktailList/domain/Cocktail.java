@@ -49,10 +49,9 @@ public class Cocktail {
 
 	public Cocktail() {
 		super();
-		this.kaytossa=0;
-	
+		this.kaytossa=0;	
 	}
-
+	
 	public Cocktail(String nimi, double hinta, int kaytossa) {
 		super();		
 		this.nimi = nimi;
@@ -95,9 +94,7 @@ public class Cocktail {
 
 	public int isKaytossa() {
 		return kaytossa;
-	}
-	
-	
+	}	
 
 	public void setKaytossa(int kaytossa) {
 		this.kaytossa = kaytossa;
@@ -140,10 +137,4 @@ public class Cocktail {
 		return "Cocktail [cocktailId=" + cocktailId + ", nimi=" + nimi + ", hinta=" + hinta + ", kaytossa=" + kaytossa
 				+ ", jaa=" + this.getJaa() + ", lasi=" + this.getLasi() + "]";
 	}
-	
-	
-	
-	
-	
-
 }

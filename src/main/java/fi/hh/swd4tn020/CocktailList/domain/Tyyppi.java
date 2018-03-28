@@ -24,8 +24,7 @@ public class Tyyppi {
 	private List<Aines> ainekset;
 
 	public Tyyppi() {
-		super();
-		
+		super();		
 	}
 
 	public Tyyppi(String tyyppi, String yksikkoLuokka) {
@@ -78,10 +77,4 @@ public class Tyyppi {
 	public String toString() {
 		return "Tyyppi [tyyppiId=" + tyyppiId + ", tyyppi=" + tyyppi + "]";
 	}
-	
-	
-	
-	
-	
-
 }

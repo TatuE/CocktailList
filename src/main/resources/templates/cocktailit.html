@@ -24,44 +24,48 @@
 			    	</form>
 			    </div>		    
 		    	<div style="float:right" th:if="${#httpServletRequest.remoteUser}==null" >		    	
-					<a th:href="@{/login}" class="btn btn-info">Kirjaudu sisään</a>	
+					<a th:href="@{/login}" class="btn btn-primary">Kirjaudu sisään</a>	
 			    </div>
 		    </div>		
-		</div>
-	    	     
+		</div>	    	     
 		<table class="table table-bordered">
-	    <tr>
-	    	<th>Nimi</th>   
-	     	<td th:text="*{cocktail.nimi}"></td>     	
-	    </tr>
-	    <tr>
-	    	<th>Hinta</th>   
-	     	<td th:text="*{cocktail.hinta}"></td>     	
-	    </tr>
-	    <tr>
-	     	<th>Lasimalli</th>   
-	     	<td th:text="*{cocktail.lasi.lasiMalli}"></td>     	
-	    </tr>
-	    <tr>
-	    	<th>Jäät</th>   
-	     	<td th:text="*{cocktail.jaa.jaaMalli}"></td>     	
-	    </tr>
+		    <tr>
+		    	<th>Nimi</th>   
+		     	<td th:text="*{cocktail.nimi}"></td>     	
+		    </tr>
+		    <tr>
+		    	<th>Hinta</th>   
+		     	<td th:text="*{cocktail.hinta}"></td>     	
+		    </tr>
+		    <tr>
+		     	<th>Lasimalli</th>   
+		     	<td th:text="*{cocktail.lasi.lasiMalli}"></td>     	
+		    </tr>
+		    <tr>
+		    	<th>Jäät</th>   
+		     	<td th:text="*{cocktail.jaa.jaaMalli}"></td>     	
+		    </tr>
 	    </table>
+	    <h5>Ainekset</h5>
 	    <table class="table table-bordered">
-	    <tr>
-	    <th>Ainekset</th> 
-	    </tr>
-	    <tr th:each = "aines : ${aines}">
-	    	<td th:text="${aines.ainesosa.ainesosaNimi}"></td>
-	    	<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
-	    	<td th:text="${aines.maara}"></td>
-	    	<td th:text="${aines.tyyppi.tyyppi}"></td>
-	    	<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muutaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-info">Muuta</a></td> 
-	    	<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-danger">Poista</a></td>      					   		
-	    </tr>         
+	    	<tr>
+			    <th>Raaka-aine</th>
+			    <th>Tyyppi</th> 
+			    <th>Määrä</th> 
+			    <th>Yksikkö</th>
+			    <th sec:authorize="hasAuthority('ADMIN')"></th>
+			    <th sec:authorize="hasAuthority('ADMIN')"></th>  
+	   		</tr>
+		    <tr th:each = "aines : ${aines}">
+			   	<td th:text="${aines.ainesosa.ainesosaNimi}"></td>
+			   	<td th:text="${aines.ainesosa.tyyppi.tyyppi}"></td>
+			   	<td th:text="${aines.maara}"></td>
+			   	<td th:text="${aines.tyyppi.tyyppi}"></td>
+			   	<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muutaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-success">Muuta</a></td> 
+			   	<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaraakaaine/{id}(id=${aines.ainesId})}" class="btn btn-danger">Poista</a></td>      					   		
+		    </tr>         
 	    </table>
-	    <a href="/cocktaillista" class="btn btn-success">Palaa valikkoon</a>
 	    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lisaaraakaaine/{id}(id=${cocktail.cocktailId})}" class="btn btn-success">Lisää uusi Raaka-aine</a>
-		     
+		<a th:href="@{/cocktaillista}" class="btn btn-primary">Palaa valikkoon</a>     
 	</body>
 </html>

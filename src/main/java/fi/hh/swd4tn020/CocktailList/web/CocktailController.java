@@ -111,8 +111,7 @@ public class CocktailController {
         	aines.setKaytossa(1);
     		long id = aines.getCocktail().getCocktailId();
     		ainesRepository.save(aines);		
-    		return "redirect:/cocktailit/"+id+"";
-        	
+    		return "redirect:/cocktailit/"+id+"";        	
         }		
 	}
 	
@@ -205,5 +204,10 @@ public class CocktailController {
 	@RequestMapping(value="/login")
 	public String login() {
 		return "login";
-	}	
+	}
+	
+	@RequestMapping(value="/")
+	public String index() {
+		return "redirect:/cocktaillista";
+	}
 }

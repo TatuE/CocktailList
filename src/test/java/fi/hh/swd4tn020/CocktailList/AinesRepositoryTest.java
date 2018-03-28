@@ -36,19 +36,19 @@ public class AinesRepositoryTest {
 	
 	@Test
 		public  void createAines() {
-			Aines aines = new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola").get(0));
+			Aines aines = new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Napue").get(0), cocktailRepository.findByNimi("Napue tonic").get(0));
 			ainesRepository.save(aines);
-			List<Aines> ainesTesti = ainesRepository.findByCocktail(cocktailRepository.findByNimi("KossuKola").get(0));
+			List<Aines> ainesTesti = ainesRepository.findByCocktail(cocktailRepository.findByNimi("Napue tonic").get(0));
 			assertThat(ainesTesti.get(1).getAinesId()).isNotNull();
 	}
 	
 	@Test
 		public void deleteAines() {
-			Aines aines = new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola").get(0));
+			Aines aines = new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Napue").get(0), cocktailRepository.findByNimi("Napue tonic").get(0));
 			ainesRepository.save(aines);
-			List<Aines> ainesTesti = ainesRepository.findByCocktail(cocktailRepository.findByNimi("KossuKola").get(0));
-			assertThat(ainesTesti.get(1).getAinesId()).isNotNull();
-			long ainesID = ainesTesti.get(1).getAinesId();
+			List<Aines> ainesTesti = ainesRepository.findByCocktail(cocktailRepository.findByNimi("Napue tonic").get(0));
+			assertThat(ainesTesti.get(4).getAinesId()).isNotNull();
+			long ainesID = ainesTesti.get(4).getAinesId();
 			ainesRepository.delete(aines);
 			List<Aines> ainesTestiLista = ainesRepository.findByAinesId(ainesID);
 			assertThat(ainesTestiLista).hasSize(0);		

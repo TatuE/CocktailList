@@ -7,5 +7,4 @@ import org.springframework.data.repository.CrudRepository;
 public interface LasiRepository  extends CrudRepository<Lasi, Long> {
 	
 	List<Lasi> findByLasiMalli(String lasiMalli);
-
 }

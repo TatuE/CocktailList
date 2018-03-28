@@ -55,6 +55,9 @@ public class CocktailListApplication {
 			
 			tyyppiRepository.save(new Tyyppi("Koriste", "ainesosa"));
 			tyyppiRepository.save(new Tyyppi("Mauste", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Marja", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Hedelmä", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Yrtti", "ainesosa"));
 			
 			tyyppiRepository.save(new Tyyppi("Viina", "ainesosa"));
 			tyyppiRepository.save(new Tyyppi("Vodka", "ainesosa"));			
@@ -77,15 +80,16 @@ public class CocktailListApplication {
 			tyyppiRepository.save(new Tyyppi("Olut", "ainesosa"));
 			tyyppiRepository.save(new Tyyppi("Siideri", "ainesosa"));		
 			
-			tyyppiRepository.save(new Tyyppi("Limonaadi", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Mixeri", "ainesosa"));
 			tyyppiRepository.save(new Tyyppi("Mehu", "ainesosa"));
 			tyyppiRepository.save(new Tyyppi("Tee", "ainesosa"));
 			tyyppiRepository.save(new Tyyppi("Kahvi", "ainesosa"));
+			tyyppiRepository.save(new Tyyppi("Siirappi", "ainesosa"));
 			
 			lasiRepository.save(new Lasi("Grogi"));
 			lasiRepository.save(new Lasi("Rocks"));
 			lasiRepository.save(new Lasi("High ball"));
-			lasiRepository.save(new Lasi("cocktail"));
+			lasiRepository.save(new Lasi("Cocktail"));
 			lasiRepository.save(new Lasi("Tuoppi"));
 			lasiRepository.save(new Lasi("Kahvikuppi"));
 			lasiRepository.save(new Lasi("Viinilasi"));
@@ -95,62 +99,40 @@ public class CocktailListApplication {
 			
 			jaaRepository.save(new Jaa("Pala"));
 			jaaRepository.save(new Jaa("Murska"));
-			jaaRepository.save(new Jaa("Ei jäitä"));
+			jaaRepository.save(new Jaa("Ei jäitä"));			
 			
+			ainesosaRepository.save(new Ainesosa("Napue", tyyppiRepository.findByTyyppi("Gin").get(0)));	
+			ainesosaRepository.save(new Ainesosa("Tonic", tyyppiRepository.findByTyyppi("Mixeri").get(0)));
+			ainesosaRepository.save(new Ainesosa("Karpalo", tyyppiRepository.findByTyyppi("Marja").get(0)));
+			ainesosaRepository.save(new Ainesosa("Rosmariini oksa", tyyppiRepository.findByTyyppi("Yrtti").get(0)));
 			
-			
-			
-			ainesosaRepository.save(new Ainesosa("Koskenkorva", tyyppiRepository.findByTyyppi("Vodka").get(0)));	
-			ainesosaRepository.save(new Ainesosa("Banaani", tyyppiRepository.findByTyyppi("Likööri").get(0)));
-			ainesosaRepository.save(new Ainesosa("Coca cola", tyyppiRepository.findByTyyppi("Limonaadi").get(0)));
-			ainesosaRepository.save(new Ainesosa("Sprite", tyyppiRepository.findByTyyppi("Limonaadi").get(0)));
-			ainesosaRepository.save(new Ainesosa("Jaffa", tyyppiRepository.findByTyyppi("Limonaadi").get(0)));
-			ainesosaRepository.save(new Ainesosa("Karpalo mehu", tyyppiRepository.findByTyyppi("Mehu").get(0)));
-			ainesosaRepository.save(new Ainesosa("Ginger ale", tyyppiRepository.findByTyyppi("Limonaadi").get(0)));
+			ainesosaRepository.save(new Ainesosa("Havanna Club anejo", tyyppiRepository.findByTyyppi("Rommi").get(0)));
+			ainesosaRepository.save(new Ainesosa("Sitruuna", tyyppiRepository.findByTyyppi("Mehu").get(0)));
+			ainesosaRepository.save(new Ainesosa("Sokeri", tyyppiRepository.findByTyyppi("Siirappi").get(0)));
 			
 			
 					
-			cocktailRepository.save(new Cocktail("Banaani-Kola",10.00,1,jaaRepository.findByJaaMalli("Murska").get(0), lasiRepository.findByLasiMalli("Rocks").get(0)));
+			cocktailRepository.save(new Cocktail("Napue tonic",15,1,jaaRepository.findByJaaMalli("Pala").get(0), lasiRepository.findByLasiMalli("Rocks").get(0)));
 			
-			ainesRepository.save(new Aines(4,1,tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("Banaani-Kola").get(0)));
-			ainesRepository.save(new Aines(12,1, tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("Banaani-Kola").get(0)));			
-				
+			ainesRepository.save(new Aines(4,1,tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Napue").get(0), cocktailRepository.findByNimi("Napue tonic").get(0)));
+			ainesRepository.save(new Aines(12,1, tyyppiRepository.findByTyyppi("cl").get(0),ainesosaRepository.findByAinesosaNimi("Tonic").get(0), cocktailRepository.findByNimi("Napue tonic").get(0)));			
+			ainesRepository.save(new Aines(5,1,tyyppiRepository.findByTyyppi("kpl").get(0),ainesosaRepository.findByAinesosaNimi("Karpalo").get(0), cocktailRepository.findByNimi("Napue tonic").get(0)));
+			ainesRepository.save(new Aines(1,1, tyyppiRepository.findByTyyppi("kpl").get(0),ainesosaRepository.findByAinesosaNimi("Rosmariini oksa").get(0), cocktailRepository.findByNimi("Napue tonic").get(0)));	
 			
-			cocktailRepository.save(new Cocktail("KossuKola", 10.00, 1, jaaRepository.findByJaaMalli("Murska").get(0), lasiRepository.findByLasiMalli("Rocks").get(0)));			
+			cocktailRepository.save(new Cocktail("Daiquiri", 15, 1, jaaRepository.findByJaaMalli("Ei jäitä").get(0), lasiRepository.findByLasiMalli("Cocktail").get(0)));			
 												
-			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Koskenkorva").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
-			ainesRepository.save(new Aines(2,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Banaani").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
-			ainesRepository.save(new Aines(12,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Coca cola").get(0), cocktailRepository.findByNimi("KossuKola").get(0)));
-					
-			String adminPassword= "salasanaAdmin";			
+			ainesRepository.save(new Aines(4,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Havanna Club anejo").get(0), cocktailRepository.findByNimi("Daiquiri").get(0)));
+			ainesRepository.save(new Aines(3,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Sitruuna").get(0), cocktailRepository.findByNimi("Daiquiri").get(0)));
+			ainesRepository.save(new Aines(1,1,tyyppiRepository.findByTyyppi("cl").get(0), ainesosaRepository.findByAinesosaNimi("Sokeri").get(0), cocktailRepository.findByNimi("Daiquiri").get(0)));
+			
+			String adminPassword= "salasana";			
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String adminPwd = passwordEncoder.encode(adminPassword);			
 			
-			//admin = salasanaAdmin
+			//admin = salasana
 			
 			Kayttaja kayttajaAdmin = new Kayttaja("admin", adminPwd, "ADMIN");			
-			kayttajaRepository.save(kayttajaAdmin);
-			
-			
-			log.info("fetch all cocktails");
-			for (Cocktail cocktail : cocktailRepository.findAll()) {
-				log.info(cocktail.toString());
-			}
-			
-			for(Aines aines: ainesRepository.findAll()) {
-				log.info(aines.toString());
-			}
-			
-			for(Aines aines: ainesRepository.findAll()) {
-				if(aines.getCocktail().getNimi().equals("KossuKola")&&aines.getCocktail().getKaytossa()!=0) {
-					log.info(aines.toString());
-				}				
-			}
-			
-			for(Ainesosa ainesosa: ainesosaRepository.findAll()) {				
-					log.info(ainesosa.toString());								
-			}
-			
+			kayttajaRepository.save(kayttajaAdmin);			
 
 		};
 		

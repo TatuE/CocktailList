@@ -28,12 +28,12 @@
 			    </div>
 		    </div>		
 		</div>		
-		
 		<div>
 			<form th:object="${aines}" th:action="@{lisaaraakaaine}" action="#" method="post">
 				<input type="hidden" id="ainesId" th:field="*{ainesId}"/>							
 			  	<label for="maara">Määrä</label>
-				<input type="number" id="maara" th:field="*{maara}"/> <p th:if="${#fields.hasErrors('maara')}" th:errors="*{maara}"> Maara virhe</p>
+				<input type="number" id="maara" th:field="*{maara}"/> 
+				<p th:if="${#fields.hasErrors('maara')}" th:errors="*{maara}"> Maara virhe</p>
 				<div style="clear: both; display: block; height: 10px;"></div>		  		  			
 				<label for="tyyppiLista">Tyyppi</label>
 				 <select id="tyyppiLista" th:field="*{tyyppi}" class="form-control">
@@ -50,12 +50,10 @@
 				 <select id="cocktailLista" th:field="*{cocktail}" class="form-control">
 	       			<option th:each="cocktail: ${cocktail}" th:value="${cocktail.cocktailId}" th:text="${cocktail.nimi}"></option>
 	    		</select>			
-				<div style="clear: both; display: block; height: 10px;"></div>
-						
-				
-				<input type="submit" value="Tallenna uusi raaka-aine" class="btn btn-success"></input>		
+				<div style="clear: both; display: block; height: 10px;"></div>				
+				<input type="submit" value="Tallenna uusi raaka-aine" class="btn btn-success"></input>
+				<a th:href="@{/cocktaillista}" class="btn btn-success">Palaa valikkoon</a>							
 			</form>			
-		</div>	
-	
+		</div>
 	</body>
 </html>

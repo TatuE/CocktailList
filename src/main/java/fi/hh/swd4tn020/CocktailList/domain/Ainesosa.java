@@ -83,13 +83,4 @@ public class Ainesosa {
 	public String toString() {
 		return "Ainesosa [ainesosaId=" + ainesosaId + ", ainesosaNimi=" + ainesosaNimi + ", tyyppi=" + this.getTyyppi() + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

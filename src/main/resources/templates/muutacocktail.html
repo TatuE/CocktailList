@@ -24,11 +24,10 @@
 			    	</form>
 			    </div>		    
 		    	<div style="float:right" th:if="${#httpServletRequest.remoteUser}==null" >		    	
-					<a th:href="@{/login}" class="btn btn-info">Kirjaudu sisään</a>	
+					<a th:href="@{/login}" class="btn btn-primary">Kirjaudu sisään</a>	
 			    </div>
 		    </div>		
-		</div>
-		
+		</div>		
 		<div>
 			<form th:object="${cocktail}" th:action="@{muutacocktail}" action="#" method="post">
 				<input type="hidden" id="id" th:field="*{cocktailId}"/>
@@ -48,11 +47,10 @@
 				 <select id="jaaLista" th:field="*{jaa}" class="form-control">
 	       			<option th:each="jaa: ${jaa}" th:value="${jaa.jaaId}" th:text="${jaa.jaaMalli}"></option>
 	    		</select>			
-				<div style="clear: both; display: block; height: 10px;"></div>			
-				
-				<input type="submit" value="Tallenna muutokset ja jatka" class="btn btn-success"></input>		
+				<div style="clear: both; display: block; height: 10px;"></div>				
+				<input type="submit" value="Tallenna muutokset ja jatka" class="btn btn-success"></input>
+				<a th:href="@{/cocktaillista}" class="btn btn-primary">Palaa valikkoon</a>		
 			</form>		
-		</div>
-	
+		</div>		
 	</body>
 </html>

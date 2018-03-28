@@ -19,7 +19,6 @@ public class Lasi {
 	@OneToMany
 	private List<Cocktail> cocktails;	
 	
-	
 	public Lasi() {
 		super();		
 	}
@@ -60,5 +59,4 @@ public class Lasi {
 	public String toString() {
 		return "Lasi [lasiId=" + lasiId + ", lasiMalli=" + lasiMalli + "]";
 	}
-
 }

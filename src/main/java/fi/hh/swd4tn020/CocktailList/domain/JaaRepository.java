@@ -7,5 +7,4 @@ import org.springframework.data.repository.CrudRepository;
 public interface JaaRepository  extends CrudRepository<Jaa, Long> {
 	
 	List<Jaa> findByJaaMalli(String jaaMalli);
-
 }

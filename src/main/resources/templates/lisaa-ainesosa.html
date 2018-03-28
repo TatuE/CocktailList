@@ -28,20 +28,20 @@
 			    </div>
 		    </div>		
 		</div>		
-		
 		<div>
 			<form th:object="${ainesosa}" th:action="@{lisaa-ainesosa}" action="#" method="post">		  	
 			  	<label for="ainesosaNimi"> Uusi ainesosa</label>
-				<input type="text" id="ainesosaNimi" th:field="*{ainesosaNimi}"/> <p th:if="${#fields.hasErrors('ainesosaNimi')}" th:errors="*{ainesosaNimi}"> Nimi virhe</p>
+				<input type="text" id="ainesosaNimi" th:field="*{ainesosaNimi}"/> 
+				<p th:if="${#fields.hasErrors('ainesosaNimi')}" th:errors="*{ainesosaNimi}"> Nimi virhe</p>
 				<div style="clear: both; display: block; height: 10px;"></div>		  		  			
 				<label for="tyyppiLista">Tyyppi</label>
 				 <select id="tyyppiLista" th:field="*{tyyppi}" class="form-control">
 	       			<option th:each="tyyppi: ${tyyppi}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppi}"></option>
 	    		</select>			
 				<div style="clear: both; display: block; height: 10px;"></div>			
-				<input type="submit" value="Tallenna uusi ainesosa" class="btn btn-success"></input>		
+				<input type="submit" value="Tallenna uusi ainesosa" class="btn btn-success"></input>
+				<a th:href="@{/cocktaillista}" class="btn btn-success">Palaa valikkoon</a>							
 			</form>			
-		</div>	
-	
+		</div>			
 	</body>
 </html>

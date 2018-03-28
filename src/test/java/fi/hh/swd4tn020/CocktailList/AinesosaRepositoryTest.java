@@ -22,7 +22,7 @@ public class AinesosaRepositoryTest {
 	
 	@Test
 		public void findByAinesosaNimi() {
-			List<Ainesosa> ainesosat = ainesosaRepository.findByAinesosaNimi("Coca cola");
+			List<Ainesosa> ainesosat = ainesosaRepository.findByAinesosaNimi("Tonic");
 			assertThat(ainesosat).hasSize(1);
 	}
 	

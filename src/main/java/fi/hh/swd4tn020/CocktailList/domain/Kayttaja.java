@@ -15,7 +15,7 @@ public class Kayttaja {
 	private long kayttajaId;
 	
 	@Column(name="kayttajaNimi", nullable=false, unique=true)
-	private String kayttajaNimi;
+	private String kayttajaNimi;	
 	
 	@Column(name="salasana", nullable=false)
 	private String salasana;
@@ -23,14 +23,13 @@ public class Kayttaja {
 	@Column(name="rooli", nullable=false)
 	private String rooli;
 
-	public Kayttaja() {
-		super();
+	public Kayttaja() {		super();
 		
 	}
 
 	public Kayttaja(String kayttajaNimi, String salasana, String rooli) {
 		super();
-		this.kayttajaNimi = kayttajaNimi;
+		this.kayttajaNimi = kayttajaNimi;		
 		this.salasana = salasana;		
 		this.rooli = rooli;
 	}
@@ -49,7 +48,7 @@ public class Kayttaja {
 
 	public void setKayttajaNimi(String kayttajaNimi) {
 		this.kayttajaNimi = kayttajaNimi;
-	}
+	}	
 
 	public String getSalasana() {
 		return salasana;

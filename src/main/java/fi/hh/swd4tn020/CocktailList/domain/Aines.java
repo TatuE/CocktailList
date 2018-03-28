@@ -128,10 +128,4 @@ public class Aines {
 			return "Aines [ainesId=" + ainesId + ", maara=" + maara +", kaytossa="+kaytossa+ ", tyyppi=" + this.getTyyppi() + ", ainesosa=" + this.getAinesosa() +"]";
 		}		
 	}
-	
-	
-	
-	
-	
-
 }
